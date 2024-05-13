@@ -1,6 +1,8 @@
 const { modifiedDb } = require('../data/beers');
 const Beer = require('../models/Beer');
+const db = require('../database/connection')
 
+db();
 
 const addBeer = async (data) => {
   try {

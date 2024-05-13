@@ -45,4 +45,18 @@ modifiedDb.forEach((obj) => {
   }
 });
 
-module.exports = { punkapiDb, getImgUrls, modifiedDb };
+const formatDate = (string) => {
+  let newString;
+  if(string.includes('/')) {
+    let dateArr = string.split('/').reverse();
+    dateArr.push('01');
+    return newString = dateArr.join('-');
+  } else {
+    return newString = `${string}-01-01`;    
+  }
+};
+
+// modify 'first_brewed' field to format YYYY/MM/DD to work with Date module
+modifiedDb.forEach((obj) => obj.first_brewed = formatDate(obj.first_brewed));
+
+module.exports = { getImgUrls, modifiedDb };
